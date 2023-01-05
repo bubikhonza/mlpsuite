@@ -16,14 +16,15 @@ Infrastructure of this application consists of several *Docker containers*, each
 ##### Spark Worker/s:
 * Part of Spark streaming engine
 
-##### Logging container:
-* Takes care of holding and serving logs.
+##### Log aggregator container:
+* Takes care of managing logs.
 
 ##### Persistant storage container:
 * Persistant storage for historical data.
 
 ##### Application logic container:
 * Container that is responsible for business logic and also takes care of loading proper transformers/evaluators.
+
 
 ##### Data API container: 
 * Publishing messages
