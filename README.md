@@ -9,6 +9,7 @@ Infrastructure of this application consists of several *Docker containers*, each
 
 ##### Output data Kafka container:
 * Serves as messaging queue for transformed data.
+* This might be replaces with ELK stack
 
 ##### Spark Driver:
 * Part of Spark streaming engine
@@ -18,6 +19,9 @@ Infrastructure of this application consists of several *Docker containers*, each
 
 ##### Log aggregator container:
 * Takes care of managing logs.
+
+##### Grafana container:
+* Serves as data visualizer.
 
 ##### Persistant storage container:
 * Persistant storage for historical data.
