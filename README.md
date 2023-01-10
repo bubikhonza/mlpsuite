@@ -4,10 +4,11 @@ Aims to provide easy way to transform data via pyspark streaming ML pipeline, wi
 
 ### How to run ###
 Connect to spark master and run following:
-to test spark: 
+
+#### to test spark: 
 `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 /opt/bitnami/spark/examples/src/main/python/pi.py`
 
-to run pipeline:
+#### to run pipeline:
 - `pip install -t dependencies -r requirements.txt`
 - zip dependencies folder --- make sure packages are in zip root!
 - `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /app/dependencies/dependencies.zip /app/src/main.py`
