@@ -20,7 +20,9 @@ The solution above doesnt work, use this as temp:
 
 
 
-###Infrastructure of this application consists of several *Docker containers*, each container has its own responsibility:###
+## Infrastructure:
+
+Application consists of several *Docker containers*, each container has its own responsibility
 
 ##### Input data Kafka container:
 * Serves as messaging queue for input data.
