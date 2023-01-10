@@ -1,6 +1,7 @@
 version: "3"
 services:
   spark:
+    #image: docker.io/bitnami/spark:3.3
     build: docker/spark/.
     environment:
       - SPARK_MODE=master
@@ -10,9 +11,12 @@ services:
       - SPARK_SSL_ENABLED=no
     ports:
       - '8080:8080'
+      - '7070:7070'
     volumes:
       - ./app:/app
+
   spark-worker:
+    #image: docker.io/bitnami/spark:3.3
     build: docker/spark/.
     environment:
       - SPARK_MODE=worker
@@ -25,7 +29,8 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./app:/app
-
+    ports:
+      - '8081:8080'
   # app:
   #   build: app/.
 
