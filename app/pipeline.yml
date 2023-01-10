@@ -1,0 +1,19 @@
+stages:
+  - tokenizer:
+    - module_name: pyspark.ml.feature
+    - class_name: Tokenizer
+    - args:
+      - inputCol=text[str]
+      - outputCol=words[str]
+  - hashingtf:
+    - module_name: pyspark.ml.feature
+    - class_name: HashingTF
+    - args:
+      - inputCol=words[str]
+      - outputCol=features[str]
+  - logistic_reg:
+    - module_name: pyspark.ml.classification
+    - class_name: LogisticRegression
+    - args: 
+      - maxIter=10[int]
+      - regParam=0.001[float]
