@@ -7,7 +7,7 @@ from stage import Stage
 
 def load_yml() -> dict:
     data_loaded = {}
-    with open("/app/pipeline.yml", 'r') as stream:
+    with open("/shared/pipeline.yml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
     return data_loaded
 

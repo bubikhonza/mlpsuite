@@ -17,3 +17,6 @@ stages:
     - args: 
       - maxIter=10[int]
       - regParam=0.001[float]
+train:
+  - path:
+    - /shared/data/train.csv
