@@ -21,6 +21,9 @@ Connect to spark master and run following:
 - zip dependencies folder --- make sure packages are in zip root!
 - Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /app/dependencies/dependencies.zip /app/src/main.py`
 
+## Modifying input data
+If input data for training needs transformation, you can use jupyter container (jupyterlab) for this purpose - /shared/* contains directory shared between every container
+
 ## Infrastructure:
 
 Application consists of several *Docker containers*, each container has its own responsibility
