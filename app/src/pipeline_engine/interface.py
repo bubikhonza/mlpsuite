@@ -6,7 +6,7 @@ import yaml
 
 def load_yml() -> dict:
     data_loaded = {}
-    with open("/shared_core/pipeline.yml", 'r') as stream:
+    with open("/shared_usr/pipeline.yml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
     return data_loaded
 
