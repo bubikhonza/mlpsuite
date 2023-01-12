@@ -161,4 +161,4 @@ cython_debug/
 
 app/dependencies
 app/dependencies.zip
-shared/dependencies.zip
+shared_core/dependencies.zip

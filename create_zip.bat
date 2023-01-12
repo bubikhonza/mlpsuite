@@ -13,5 +13,5 @@ cd dependencies
 tar.exe -a -cf ..\dependencies.zip *
 
 cd ..
-echo F| xcopy /y dependencies.zip ..\shared\dependencies.zip
+echo F| xcopy /y dependencies.zip ..\shared_core\dependencies.zip
 del dependencies.zip

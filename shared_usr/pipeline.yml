@@ -19,4 +19,4 @@ stages:
       - regParam=0.001[float]
 train:
   - path:
-    - /shared/data/train.csv
+    - /shared_core/data/train.csv
