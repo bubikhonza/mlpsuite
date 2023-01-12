@@ -13,8 +13,8 @@ services:
       - '8080:8080'
       - '7070:7070'
     volumes:
-      - ./app:/app # this is temporary, will push all the necessary to shared_core and build egg
       - ./shared_core:/shared_core
+      - ./shared_usr:/shared_usr
 
   spark-worker:
     #image: docker.io/bitnami/spark:3.3
@@ -29,8 +29,8 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     volumes:
-      - ./app:/app # this is temporary, will push all the necessary to shared_core and build egg
       - ./shared_core:/shared_core
+      - ./shared_usr:/shared_usr
     ports:
       - '8081:8080'
 
@@ -59,6 +59,7 @@ services:
       - '8888:8888'
     volumes:
       - ./shared_core:/shared_core
+      - ./shared_usr:/shared_usr
   # output_kafka:
   #   image: 'bitnami/kafka:3.3.1'
   #   ports:
