@@ -1,9 +1,8 @@
-import yaml
 from pyspark.ml import Pipeline
 from pyspark.sql import SparkSession
 from collections import ChainMap
-from stage import Stage
-
+from pipeline_engine.stage import Stage
+import yaml
 
 def load_yml() -> dict:
     data_loaded = {}
@@ -22,8 +21,7 @@ def create_pipeline(config: dict) -> Pipeline:
 
     return Pipeline(stages=pyspark_stages)
 
-
-if __name__ == "__main__":
+def run_pipeline() -> None:
     spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
     config = load_yml()
     pipeline = create_pipeline(config)
