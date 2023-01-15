@@ -4,7 +4,7 @@
 :start
 cls
 
-cd app
+cd pipeline_engine
 @RD /S /Q dependencies
 pip install -t dependencies -r requirements.txt
 pip install -t dependencies .

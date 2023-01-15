@@ -3,11 +3,13 @@ pipeline_engine-0.1.dist-info/METADATA,sha256=NJa481lvkEjfWorTgXeuW32HCmEr58QfWi
 pipeline_engine-0.1.dist-info/RECORD,,
 pipeline_engine-0.1.dist-info/REQUESTED,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
 pipeline_engine-0.1.dist-info/WHEEL,sha256=2wepM1nk4DS4eFpYrW1TTqPcoGNfHhhO_i5m4cOimbo,92
-pipeline_engine-0.1.dist-info/direct_url.json,sha256=3uYWzk5Fq444clevuAHsh7hNoteUYSt507ohqjkP-vA,67
+pipeline_engine-0.1.dist-info/direct_url.json,sha256=Fr0_zuEzyqGq5hGsmIS0B0vXTC5LPRCMqJOI7_Hrp54,79
 pipeline_engine-0.1.dist-info/top_level.txt,sha256=GC73kw1LLP02MwzDtNcwHkm9QflzQAuE5Ux-7N1ZvSc,16
 pipeline_engine/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
 pipeline_engine/__pycache__/__init__.cpython-310.pyc,,
+pipeline_engine/__pycache__/data_loader.cpython-310.pyc,,
 pipeline_engine/__pycache__/interface.cpython-310.pyc,,
 pipeline_engine/__pycache__/stage.cpython-310.pyc,,
-pipeline_engine/interface.py,sha256=9RiXN7zude2YiXZof6oN5VvNdm7yYkxMBWvJE9Zwcdk,883
+pipeline_engine/data_loader.py,sha256=YvSlLOIhpGxGubSkgiVhMA_e5TeAoh9mEepqxVm2CdY,461
+pipeline_engine/interface.py,sha256=N9QtqT8TMs21iqM7FhG20SKD5_L_x9k8-GvTKt3lIgo,1591
 pipeline_engine/stage.py,sha256=zZeYwni-13DHJcIi5oBtj3dzbGXgItE5dBOmgCvNeDs,849
