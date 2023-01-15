@@ -8,6 +8,8 @@ cd pipeline_engine
 @RD /S /Q dependencies
 pip install -t dependencies -r requirements.txt
 pip install -t dependencies .
+py -m pip install -t dependencies -r requirements.txt
+py -m pip install -t dependencies .
 
 cd dependencies
 tar.exe -a -cf ..\dependencies.zip *

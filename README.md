@@ -17,8 +17,8 @@ Connect to spark master and run following:
 `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 /opt/bitnami/spark/examples/src/main/python/pi.py`
 
 ## Running the pipeline ###
-- `run create_dependencies.bat`
-- Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared_core/dependencies.zip /shared_core/main.py`
+- run `create_dependencies.bat`
+- Connect to spark master and run following: `f`
 
 /opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared_core/pipeline_engine-0.1.win-amd64.zip /shared_core/main.py
 

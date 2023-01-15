@@ -1,6 +1,5 @@
 from pyspark.sql.types import StructType
-from pyspark.sql import DataFrame
-from pyspark.sql import SparkSession
+from pyspark.sql import DataFrame, SparkSession, SQLContext
 import yaml
 
 
@@ -8,7 +7,7 @@ class DataLoader:
     @staticmethod
     def load_csv(path: str, header: str, schema: StructType) -> DataFrame:
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
-        df = spark.sparkContext.read.format("com.databricks.spark.csv").schema(
+        df = SQLContext(spark.sparkContext).read.format("com.databricks.spark.csv").schema(
             schema).option("header", header).load(path)
         return df
 

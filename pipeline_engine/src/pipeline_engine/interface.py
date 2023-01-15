@@ -6,10 +6,11 @@ from pipeline_engine.data_loader import DataLoader
 from pyspark.sql import DataFrame
 import yaml
 
+
 class PipelineInterface:
     def __init__(self):
         pass
-    
+
     def __create_pipeline(self, stages_dict: dict) -> Pipeline:
         pyspark_stages = []
         for s_d in stages_dict:
@@ -17,7 +18,7 @@ class PipelineInterface:
             stage = Stage(**stage_attributes)
             pyspark_stages.append(stage.construct_pyspark_obj())
 
-        self.__pyspark_pipeline = Pipeline(stages=pyspark_stages)
+        return Pipeline(stages=pyspark_stages)
 
     def __load_train_data(self, train_dict: dict) -> DataFrame:
         train_dict = dict(ChainMap(*train_dict))  # make dict form list
@@ -31,10 +32,15 @@ class PipelineInterface:
             schema.add(StructField(k, eval(v)(), nullable=True))
         return DataLoader.load_csv(path, header, schema)
 
-
-    def run_pipeline(self) -> None:
+    def run_train(self) -> None:
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
         config = DataLoader.load_yml()
         pipeline = self.__create_pipeline(config["stages"])
-        self.__load_train_data(config["train"])
+        fitted_pipeline = pipeline.fit(self.__load_train_data(config["train"]))
+        # save model
+
         spark.stop()
+
+    def run_predict(self, model_path: str) -> None:
+        # start stream pipeline
+        pass
