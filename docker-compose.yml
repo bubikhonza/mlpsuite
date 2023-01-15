@@ -53,7 +53,7 @@ services:
     depends_on:
       - zookeeper
 
-  jupyterlab:
+  jupyter_notebook:
     image: 'jupyter/all-spark-notebook'
     ports: 
       - '8888:8888'
