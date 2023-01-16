@@ -26,8 +26,8 @@ Connect to spark master and run following:
 
 
 
-## Modifying input data
-If input data for training needs transformation, you can use jupyter container (jupyterlab) for this purpose - /shared_usr/* contains directory shared between every container
+## Exploring and editing data
+If you need to explore or edit the training data, you can use jupyter container for this purpose - /shared_usr/* contains directory shared between every container. You can then reference it in pipeline.yml
 
 ## Infrastructure:
 
