@@ -1,6 +1,6 @@
 ## Anomaly detection and general data transformation pipeline
 
-Aims to provide easy way to transform data via pyspark streaming ML pipeline, without the need of setting up complex infrastructure. Its primary purpose is to serve as anomaly detector, hovewer it can be used as any data transformation pipeline. 
+Aims to provide easy way to transform data via pyspark streaming ML pipeline, without the need of setting up complex infrastructure. Its primary purpose is to serve as anomaly detector, hovewer it can be used as any data transformation ml pipeline. 
 
 ## Installation
 - install Docker
