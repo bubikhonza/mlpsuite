@@ -18,9 +18,9 @@ Connect to spark master and run following:
 
 ## Running the pipeline ###
 - run `create_dependencies.bat`
-- Connect to spark master and run following: `f`
+- Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared_core/dependencies.zip /shared_core/run_train_job.py`
 
-/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared_core/pipeline_engine-0.1.win-amd64.zip /shared_core/main.py
+
 
 ## Modifying input data
 If input data for training needs transformation, you can use jupyter container (jupyterlab) for this purpose - /shared_usr/* contains directory shared between every container

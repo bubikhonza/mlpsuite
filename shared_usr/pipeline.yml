@@ -19,17 +19,24 @@ stages:
       - regParam=0.001[float]
 
 train:
-  - path: /shared_core/data/train.csv
+  - path: /shared_usr/train_test.csv
   - header: true
   - schema:
-    - ip_src: StringType
-    - ip_dst: StringType
-    - ip_len: DoubleType
-    - eth_src: StringType
-    - eth_dst: StringType
-    - tcp_src_port: IntegerType
-    - tcp_dst_port: IntegerType
-    - frame_time_epoch: StringType
-    - frame_len: DoubleType
-    - frame_protocols: StringType
-    - frame_time: TimestampType
+    - id: IntegerType
+    - text: StringType
+    - label: DoubleType
+    # - ip_src: StringType
+    # - ip_dst: StringType
+    # - ip_len: DoubleType
+    # - eth_src: StringType
+    # - eth_dst: StringType
+    # - tcp_src_port: IntegerType
+    # - tcp_dst_port: IntegerType
+    # - frame_time_epoch: StringType
+    # - frame_len: DoubleType
+    # - frame_protocols: StringType
+    # - frame_time: TimestampType
+  - pipeline_output: /shared_usr/models/
+
+predict:
+  - pipeline_path: /shared_usr/models/
