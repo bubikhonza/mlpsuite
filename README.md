@@ -18,7 +18,11 @@ Connect to spark master and run following:
 
 ## Running the pipeline ###
 - run `create_dependencies.bat`
+#### Training:
 - Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared_core/dependencies.zip /shared_core/run_train_job.py`
+
+#### Prediction:
+- Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared_core/dependencies.zip /shared_core/run_predict_job.py`
 
 
 
