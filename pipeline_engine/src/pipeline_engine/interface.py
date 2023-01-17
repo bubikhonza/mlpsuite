@@ -1,4 +1,4 @@
-from pyspark.ml import Pipeline
+from pyspark.ml import Pipeline, PipelineModel
 from pyspark.sql import SparkSession
 from collections import ChainMap
 from pipeline_engine.stage import Stage
@@ -11,9 +11,8 @@ class PipelineInterface:
     def __init__(self):
         self.__config = DataLoader.load_yml()
         self.__stages_conf = self.__config["stages"]
-        self.__train_conf = dict(ChainMap(*self.__config["train"])) 
-        self.__predict_conf = dict(ChainMap(*self.__config["stages"])) 
-        
+        self.__train_conf = dict(ChainMap(*self.__config["train"]))
+        self.__predict_conf = dict(ChainMap(*self.__config["predict"]))
 
     def __create_pipeline(self) -> Pipeline:
         pyspark_stages = []
@@ -36,7 +35,7 @@ class PipelineInterface:
 
     def run_train(self) -> None:
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
-        
+
         pipeline = self.__create_pipeline()
         fitted_pipeline = pipeline.fit(self.__load_train_data())
         fitted_pipeline.save(self.__train_conf["pipeline_output"])
@@ -44,5 +43,20 @@ class PipelineInterface:
 
     def run_predict(self) -> None:
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
-        pipeline = Pipeline.load(self.__predict_conf["pipeline_path"])
-        # run stream
+        pipeline = PipelineModel.load(self.__predict_conf["pipeline_path"])
+        input_stream = spark \
+            .readStream \
+            .format("kafka") \
+            .option("kafka.bootstrap.servers", "kafka:9092") \
+            .option("subscribe", "input") \
+            .load()
+
+        #pipeline.transform(input_stream) \
+        input_stream \
+            .writeStream \
+            .format("kafka") \
+            .option("kafka.bootstrap.servers", "kafka:9092") \
+            .option("checkpointLocation", "/shared_core/checkpoint") \
+            .option("topic", "output") \
+            .start()
+        spark.streams.awaitAnyTermination()

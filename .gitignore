@@ -164,3 +164,4 @@ app/dependencies.zip
 shared_core/dependencies.zip
 shared_usr/train_raw.csv
 pipeline_engine/dependencies/*
+jars_dir

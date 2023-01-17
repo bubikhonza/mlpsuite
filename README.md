@@ -22,7 +22,7 @@ Connect to spark master and run following:
 - Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared_core/dependencies.zip /shared_core/run_train_job.py`
 
 #### Prediction:
-- Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared_core/dependencies.zip /shared_core/run_predict_job.py`
+- Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --conf spark.jars.ivy=/opt/bitnami/spark/ivy --jars /shared_core/spark-sql-kafka-0-10_2.12-3.3.1.jar --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.1 --master spark://spark:7077 --py-files /shared_core/dependencies.zip /shared_core/run_predict_job.py`
 
 
 
