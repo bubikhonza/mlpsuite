@@ -40,3 +40,6 @@ train:
 
 predict:
   - pipeline_path: /shared_usr/models/
+  - schema:
+    - id: IntegerType
+    - text: StringType
