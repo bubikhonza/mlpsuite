@@ -13,8 +13,8 @@ services:
       - '8080:8080'
       - '7070:7070'
     volumes:
-      - ./shared_core:/shared_core
-      - ./shared_usr:/shared_usr
+      - ./shared/core:/shared/core
+      - ./shared/usr:/shared/usr
       - ./jars_dir:/opt/bitnami/spark/ivy:z
 
   spark-worker:
@@ -30,8 +30,8 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     volumes:
-      - ./shared_core:/shared_core
-      - ./shared_usr:/shared_usr
+      - ./shared/core:/shared/core
+      - ./shared/usr:/shared/usr
     ports:
       - '8081:8080'
 
@@ -60,8 +60,8 @@ services:
     ports: 
       - '8888:8888'
     volumes:
-      - ./shared_core:/shared_core
-      - ./shared_usr:/shared_usr
+      - ./shared/core:/shared/core
+      - ./shared/usr:/shared/usr
   
   # output_kafka:
   #   image: 'bitnami/kafka:3.3.1'

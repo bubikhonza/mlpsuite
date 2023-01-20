@@ -19,7 +19,7 @@ stages:
       - regParam=0.001[float]
 
 train:
-  - path: /shared_usr/train_test.csv
+  - path: /shared/usr/train_test.csv
   - header: true
   - schema:
     - id: IntegerType
@@ -36,10 +36,10 @@ train:
     # - frame_len: DoubleType
     # - frame_protocols: StringType
     # - frame_time: TimestampType
-  - pipeline_output: /shared_usr/models/
+  - pipeline_output: /shared/usr/models/
 
 predict:
-  - pipeline_path: /shared_usr/models/
+  - pipeline_path: /shared/usr/models/
   - schema:
     - id: IntegerType
     - text: StringType

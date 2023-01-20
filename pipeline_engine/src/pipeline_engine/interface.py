@@ -81,7 +81,7 @@ class PipelineInterface:
             .writeStream \
             .format("kafka") \
             .option("kafka.bootstrap.servers", "kafka:9092") \
-            .option("checkpointLocation", "/shared_core/checkpoint") \
+            .option("checkpointLocation", "/shared/core/checkpoint") \
             .option("topic", "output") \
             .start()
 

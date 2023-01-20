@@ -12,7 +12,7 @@ class DataLoader:
         return df
 
     @staticmethod
-    def load_yml(path: str = "/shared_usr/pipeline.yml") -> dict:
+    def load_yml(path: str = "/shared/usr/pipeline.yml") -> dict:
         with open(path, 'r') as stream:
             data_loaded = yaml.safe_load(stream)
         return data_loaded

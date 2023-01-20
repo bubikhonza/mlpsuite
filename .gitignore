@@ -161,7 +161,7 @@ cython_debug/
 
 app/dependencies
 app/dependencies.zip
-shared_core/dependencies.zip
-shared_usr/train_raw.csv
+shared/shared/core/dependencies.zip
+shared/shared/usr/train_raw.csv
 pipeline_engine/dependencies/*
 jars_dir
