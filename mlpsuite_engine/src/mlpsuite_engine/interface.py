@@ -1,17 +1,17 @@
 from pyspark.ml import Pipeline, PipelineModel
 from pyspark.sql import SparkSession
 from collections import ChainMap
-from pipeline_engine.stage import Stage
-from pipeline_engine.data_loader import DataLoader
+from mlpsuite_engine.stage import Stage
+from mlpsuite_engine.data_loader import DataLoader
 from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
 import yaml
 import logging
 
 
-class PipelineInterface:
-    def __init__(self):
-        self.__config = DataLoader.load_yml()
+class Interface:
+    def __init__(self, config_path: str = "/shared/usr/pipeline.yml"):
+        self.__config = DataLoader.load_yml(config_path)
         self.__stages_conf = self.__config["stages"]
         self.__train_conf = dict(ChainMap(*self.__config["train"]))
         self.__predict_conf = dict(ChainMap(*self.__config["predict"]))
