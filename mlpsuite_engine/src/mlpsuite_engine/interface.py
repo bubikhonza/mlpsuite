@@ -4,6 +4,7 @@ from collections import ChainMap
 from mlpsuite_engine.stage import Stage
 from mlpsuite_engine.data_loader import DataLoader
 from pyspark.sql import DataFrame
+from pyspark.sql.streaming import DataStreamWriter, DataStreamReader
 import pyspark.sql.functions as F
 import yaml
 import logging
@@ -17,6 +18,8 @@ class Interface:
         self.__predict_conf = dict(ChainMap(*self.__config["predict"]))
         self.__train_data_schema = dict(ChainMap(*self.__train_conf["schema"]))
         self.__predict_data_schema = dict(ChainMap(*self.__predict_conf["schema"]))
+        self.__input_kafka_settings = dict(ChainMap(*self.__predict_conf["input_kafka_options"]))
+        self.__output_kafka_settings = dict(ChainMap(*self.__predict_conf["output_kafka_options"]))
 
     def __create_pipeline(self) -> Pipeline:
         pyspark_stages = []
@@ -47,6 +50,26 @@ class Interface:
         schema = self.__create_pyspark_train_schema()
         return DataLoader.load_csv(path, header, schema)
 
+    def __build_kafka_input(self, spark: SparkSession) -> DataFrame:
+        logger = logging.getLogger('pyspark')
+        input_stream_df = spark \
+            .readStream \
+            .format("kafka")
+        for k, v in self.__input_kafka_settings.items():
+            logger.error(str(k))
+            logger.error(str(v))
+            input_stream_df.option(k, v)
+        return input_stream_df.load()
+
+    def __build_kafka_output(self, spark: SparkSession, result: DataFrame) -> DataStreamWriter:
+        query = result \
+            .writeStream \
+            .format("kafka") \
+
+        for k, v in self.__output_kafka_settings.items():
+            query.option(k, v)
+        return query.start()
+
     def run_train(self) -> None:
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
 
@@ -60,13 +83,7 @@ class Interface:
         logger.error("My test info statement")
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
         pipeline = PipelineModel.load(self.__predict_conf["pipeline_path"])
-        input_stream_df = spark \
-            .readStream \
-            .format("kafka") \
-            .option("kafka.bootstrap.servers", "kafka:9092") \
-            .option("subscribe", "input") \
-            .option("failOnDataLoss", "false") \
-            .load()
+        input_stream_df = self.__build_kafka_input(spark)
 
         schema = self.__create_pyspark_predict_schema()
         df = input_stream_df.selectExpr("CAST(value as STRING)")
@@ -77,12 +94,6 @@ class Interface:
         result = pipeline.transform(df)
         result = result.select([F.col(c).cast("string") for c in result.columns])
         result = result.withColumn("value", F.to_json(F.struct("*")).cast("string"),)
-        query = result \
-            .writeStream \
-            .format("kafka") \
-            .option("kafka.bootstrap.servers", "kafka:9092") \
-            .option("checkpointLocation", "/shared/core/checkpoint") \
-            .option("topic", "output") \
-            .start()
+        query = self.__build_kafka_output(spark, result)
 
         query.awaitTermination()

@@ -43,3 +43,13 @@ predict:
   - schema:
     - id: IntegerType
     - text: StringType
+
+  - input_kafka_options:
+      - kafka.bootstrap.servers: "kafka:9092"
+      - subscribe: "input"
+      - failOnDataLoss: "false"
+
+  - output_kafka_options:
+      - kafka.bootstrap.servers: "kafka:9092"
+      - checkpointLocation: "/shared/core/checkpoint"
+      - topic: "output"
