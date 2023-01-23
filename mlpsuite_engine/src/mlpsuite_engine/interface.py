@@ -10,7 +10,7 @@ import logging
 
 
 class Interface:
-    def __init__(self, config_path: str = "/shared/usr/pipeline.yml"):
+    def __init__(self, config_path: str:
         self.__config = DataLoader.load_yml(config_path)
         self.__stages_conf = self.__config["stages"]
         self.__train_conf = dict(ChainMap(*self.__config["train"]))

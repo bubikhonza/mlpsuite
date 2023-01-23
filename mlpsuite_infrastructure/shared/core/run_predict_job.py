@@ -1,6 +1,6 @@
 from mlpsuite_engine.interface import Interface
 
-interface = Interface()
+interface = Interface("/shared/usr/pipeline.yml")
 
 
 if __name__ == "__main__":
