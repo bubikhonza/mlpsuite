@@ -3,5 +3,5 @@
 Tools to easily orchestrate the ML pipeline with Pyspark. 
 
 **MLPSuite consists of**:
-- [MLPSuite Engine](mlpsuite_engine/README.md)
-- [MLPSuite Infrastructure](mlpsuite_infrastructure/README.md)
+- [MLPSuite Engine](mlpsuite_engine)
+- [MLPSuite Infrastructure](mlpsuite_infrastructure)
