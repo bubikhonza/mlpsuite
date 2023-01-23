@@ -1,4 +1,3 @@
-[<< MLPSuite home](../)
 ## MLPSuite Engine
 
 Core part of MLPSuite. Provides easy interface to build Pyspark ML pipelines from yaml file.

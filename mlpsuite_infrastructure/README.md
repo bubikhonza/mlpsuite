@@ -1,4 +1,3 @@
-[<< MLPSuite home](../)
 ## MLPSuite - Infrastructure
 Docker container orchestration with spark and kafka.
 
