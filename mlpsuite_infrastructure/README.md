@@ -17,7 +17,7 @@ Connect to spark master and run following:
 `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 /opt/bitnami/spark/examples/src/main/python/pi.py`
 
 ### Running the pipeline using MLPSuite engine ###
-*Make sure to place all dependencies (config, jar, py files) in corresponding directories*
+*Make sure to place all dependencies (config, jar, zip, py files) in corresponding directories*
 #### Training:
 - Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared/usr/dependencies.zip /shared/core/run_train_job.py`
 
