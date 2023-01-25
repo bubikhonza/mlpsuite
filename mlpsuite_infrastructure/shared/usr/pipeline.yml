@@ -40,6 +40,7 @@ train:
 
 predict:
   - pipeline_path: /shared/usr/models/
+  - version: 202301251947
   - schema:
     - id: IntegerType
     - text: StringType
