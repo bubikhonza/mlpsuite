@@ -93,11 +93,11 @@ class Interface:
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
         version = str(self.__predict_conf.get("version", ""))
         if version:
-            model_path = os.join(self.__predict_conf["pipeline_path"], version)
+            model_path = os.path.join(self.__predict_conf["pipeline_path"], version)
         else:
             root_dir = self.__predict_conf["pipeline_path"]
             latestdir = max([os.path.join(root_dir, d) for d in os.listdir(root_dir)], key=os.path.getmtime)
-            model_path = os.join(self.__predict_conf["pipeline_path"], latestdir)
+            model_path = os.path.join(self.__predict_conf["pipeline_path"], latestdir)
 
         pipeline = PipelineModel.load(model_path)
         input_stream_df = self.__build_kafka_input(spark)
