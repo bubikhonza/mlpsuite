@@ -1,5 +1,13 @@
 ## MLPSuite - Infrastructure
 Docker container orchestration with spark and kafka.
+## 1. Kubernetes
+- `minikube start --mount-string="C:\projects\mlpsuite\mlpsuite_infrastructure:/mnt/root" --mount`
+- `helm upgrade --install my-release spark-operator/spark-operator --namespace spark-operator --set webhook.enable=true --set serviceAccounts.spark.name=spark --create-namespace`
+
+https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
+
+
+## 2. Docker Compose
 
 ### Installation
 - install Docker
@@ -25,5 +33,3 @@ Connect to spark master and run following:
 
 ### Exploring and editing data
 If you need to explore or edit the training data, you can use jupyter container for this purpose - /shared/usr/* contains directory shared between every container. You can then reference it in pipeline.yml
-
-
