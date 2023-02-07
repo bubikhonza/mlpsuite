@@ -7,17 +7,17 @@ spec:
   mode: cluster
   image: "gcr.io/spark-operator/spark-py:v3.1.1"
   imagePullPolicy: Always
-  mainApplicationFile: "local:///shared/core/run_predict.py"
+  mainApplicationFile: "/home/bubikhonza/mlpsuite/mlpsuite_infrastructure/shared/core/run_train_job.py"
   deps:
     files:
-      - "local:///shared/usr/dependencies.zip"
+      - "/home/bubikhonza/mlpsuite/mlpsuite_infrastructure/shared/usr/dependencies.zip"
   sparkVersion: "3.1.1"
   restartPolicy:
     type: Never
   volumes:
     - name: "shared-volume"
       hostPath:
-        path: /mnt/root/shared #this path is from minikubes docker volume mount
+        path: /home/bubikhonza/mlpsuite/mlpsuite_infrastructure/shared #this path is from minikubes docker volume mount
         type: Directory
   driver:
     cores: 1
