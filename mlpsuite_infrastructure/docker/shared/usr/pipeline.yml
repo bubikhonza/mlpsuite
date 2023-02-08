@@ -1,0 +1,56 @@
+stages:
+  - tokenizer:
+    - module_name: pyspark.ml.feature
+    - class_name: Tokenizer
+    - args:
+      - inputCol=text[str]
+      - outputCol=words[str]
+  - hashingtf:
+    - module_name: pyspark.ml.feature
+    - class_name: HashingTF
+    - args:
+      - inputCol=words[str]
+      - outputCol=features[str]
+  - logistic_reg:
+    - module_name: pyspark.ml.classification
+    - class_name: LogisticRegression
+    - args: 
+      - maxIter=10[int]
+      - regParam=0.001[float]
+
+train:
+  - path: /shared/usr/train_test.csv
+  - header: true
+  - schema:
+    - id: IntegerType
+    - text: StringType
+    - label: DoubleType
+    # - ip_src: StringType
+    # - ip_dst: StringType
+    # - ip_len: DoubleType
+    # - eth_src: StringType
+    # - eth_dst: StringType
+    # - tcp_src_port: IntegerType
+    # - tcp_dst_port: IntegerType
+    # - frame_time_epoch: StringType
+    # - frame_len: DoubleType
+    # - frame_protocols: StringType
+    # - frame_time: TimestampType
+  - pipeline_output: /shared/usr/models/
+
+predict:
+  - pipeline_path: /shared/usr/models/
+  - version: 202301251941_RTE
+  - schema:
+    - id: IntegerType
+    - text: StringType
+
+  - input_kafka_options:
+      - kafka.bootstrap.servers: "kafka:9092"
+      - subscribe: "input"
+      - failOnDataLoss: "false"
+
+  - output_kafka_options:
+      - kafka.bootstrap.servers: "kafka:9092"
+      - checkpointLocation: "/shared/core/checkpoint"
+      - topic: "output"

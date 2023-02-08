@@ -164,3 +164,5 @@ mlpsuite_infrastructure/shared/core/checkpoint/
 mlpsuite_infrastructure/shared/usr/train_raw.csv
 mlpsuite_engine/dependencies
 mlpsuite_infrastructure/jars_dir
+
+**/cache/**
