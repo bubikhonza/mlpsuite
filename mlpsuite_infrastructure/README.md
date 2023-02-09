@@ -1,5 +1,5 @@
 ## MLPSuite - Infrastructure
 Container orchestration with spark and kafka.
 
-- [docker](docker)
+- [docker-compose](docker-compose)
 - [k8s](k8s)
