@@ -1,6 +1,3 @@
-## MLPSuite - Infrastructure
-Docker container orchestration with spark and kafka.
-
 ### Installation
 - install Docker
 - docker compose up -d
