@@ -8,7 +8,7 @@ services:
     ports:
       - '80:80'
     volumes:
-      - .shared/:shared/
+      - ./shared:/shared
 
   spark:
     #image: docker.io/bitnami/spark:3.3
@@ -23,7 +23,7 @@ services:
       - '8080:8080'
       - '7070:7070'
     volumes:
-      - .shared/:shared/
+      - ./shared:/shared
       - ./jars_dir:/opt/bitnami/spark/ivy:z
 
   spark-worker:
@@ -39,7 +39,7 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     volumes:
-      - .shared/:shared/
+      - ./shared/:/shared/
     ports:
       - '8081:8080'
 
@@ -68,7 +68,7 @@ services:
     ports: 
       - '8888:8888'
     volumes:
-      - .shared/:shared/
+      - ./shared/:/shared/
   
   # output_kafka:
   #   image: 'bitnami/kafka:3.3.1'
