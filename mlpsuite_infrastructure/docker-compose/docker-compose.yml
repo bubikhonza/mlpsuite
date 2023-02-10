@@ -1,8 +1,18 @@
 version: "3"
 services:
+  api:
+    #image: docker.io/bitnami/spark:3.3
+    build: ../api
+    environment:
+      - SOMETHING=1
+    ports:
+      - '80:80'
+    volumes:
+      - .shared/:shared/
+
   spark:
     #image: docker.io/bitnami/spark:3.3
-    build: docker/spark
+    build: images/spark
     environment:
       - SPARK_MODE=master
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
@@ -13,13 +23,12 @@ services:
       - '8080:8080'
       - '7070:7070'
     volumes:
-      - ./shared/core:/shared/core
-      - ./shared/usr:/shared/usr
+      - .shared/:shared/
       - ./jars_dir:/opt/bitnami/spark/ivy:z
 
   spark-worker:
     #image: docker.io/bitnami/spark:3.3
-    build: docker/spark
+    build: images/spark
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark:7077
@@ -30,8 +39,7 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     volumes:
-      - ./shared/core:/shared/core
-      - ./shared/usr:/shared/usr
+      - .shared/:shared/
     ports:
       - '8081:8080'
 
@@ -60,8 +68,7 @@ services:
     ports: 
       - '8888:8888'
     volumes:
-      - ./shared/core:/shared/core
-      - ./shared/usr:/shared/usr
+      - .shared/:shared/
   
   # output_kafka:
   #   image: 'bitnami/kafka:3.3.1'

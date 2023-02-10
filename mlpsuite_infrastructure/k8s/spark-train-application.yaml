@@ -7,10 +7,10 @@ spec:
   mode: cluster
   image: "gcr.io/spark-operator/spark-py:v3.1.1"
   imagePullPolicy: Always
-  mainApplicationFile: "local:///home/bubikhonza/mlpsuite/mlpsuite_infrastructure/shared/core/run_train_job.py"
+  mainApplicationFile: "local:///home/bubikhonza/mlpsuite/mlpsuite_infrastructure/shared/run_train_job.py"
   deps:
     files:
-      - "local:///home/bubikhonza/mlpsuite/mlpsuite_infrastructure/shared/usr/dependencies.zip"
+      - "local:///home/bubikhonza/mlpsuite/mlpsuite_infrastructure/shareddependencies.zip"
   sparkVersion: "3.1.1"
   restartPolicy:
     type: Never

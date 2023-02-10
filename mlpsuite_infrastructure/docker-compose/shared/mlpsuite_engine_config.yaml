@@ -19,7 +19,7 @@ stages:
       - regParam=0.001[float]
 
 train:
-  - path: /shared/usr/train_test.csv
+  - path: /sharedtrain_test.csv
   - header: true
   - schema:
     - id: IntegerType
@@ -36,10 +36,10 @@ train:
     # - frame_len: DoubleType
     # - frame_protocols: StringType
     # - frame_time: TimestampType
-  - pipeline_output: /shared/usr/models/
+  - pipeline_output: /sharedmodels/
 
 predict:
-  - pipeline_path: /shared/usr/models/
+  - pipeline_path: /sharedmodels/
   - version: 202301251941_RTE
   - schema:
     - id: IntegerType
@@ -52,5 +52,5 @@ predict:
 
   - output_kafka_options:
       - kafka.bootstrap.servers: "kafka:9092"
-      - checkpointLocation: "/shared/core/checkpoint"
+      - checkpointLocation: "/sharedcheckpoint"
       - topic: "output"
