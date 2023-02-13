@@ -14,11 +14,11 @@ Connect to spark master and run following:
 ### Running the pipeline using MLPSuite engine ###
 *Make sure to place all dependencies (config, jar, zip, py files) in corresponding directories*
 #### Training:
-Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shareddependencies.zip /shared/run_train_job.py`
+Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --master spark://spark:7077 --py-files /shared/dependencies.zip /shared/run_train_job.py`
 
 Result of this job is a pipeline model stored on path specified in engine configuration.
 #### Prediction:
-Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --conf spark.jars.ivy=/opt/bitnami/spark/ivy --jars /shared/spark-sql-kafka-0-10_2.12-3.3.1.jar --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.1 --master spark://spark:7077 --py-files /shareddependencies.zip /shared/run_predict_job.py`
+Connect to spark master and run following: `/opt/bitnami/spark/bin/spark-submit --conf spark.jars.ivy=/opt/bitnami/spark/ivy --jars /shared/spark-sql-kafka-0-10_2.12-3.3.1.jar --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.1 --master spark://spark:7077 --py-files /shared/dependencies.zip /shared/run_predict_job.py`
 
 After executing this job, every input you send to input 
 kafka will be transformed by the pipeline model and sent to output kafka.
