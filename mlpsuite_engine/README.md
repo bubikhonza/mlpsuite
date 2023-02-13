@@ -26,7 +26,7 @@ Engine uses kafka for input and output. Find correct spark-sql-kafka package on 
 
 
 ### Configuration:
-Configuration yaml has 3 main sections: `stages`, `train` and `predict`.
+Configuration yaml for the **mlpsuite_engine** consists of 3 main sections: `stages`, `train` and `predict`.
 
 Section `stages` creates all the stages for the pyspark ml pipeline (https://spark.apache.org/docs/latest/ml-pipeline.html). 
 You need to specify module and class. 
