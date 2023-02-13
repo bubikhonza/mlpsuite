@@ -6,7 +6,6 @@
 
 #### To test Kafka
 You can use kafkatool (https://www.kafkatool.com/index.html) to test kafka. 
-- add broker, topic and publish message
 
 #### To test Spark: 
 Connect to spark master and run following:
