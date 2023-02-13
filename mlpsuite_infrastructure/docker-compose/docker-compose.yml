@@ -1,7 +1,6 @@
 version: "3"
 services:
   api:
-    #image: docker.io/bitnami/spark:3.3
     build: ../api
     environment:
       - SOMETHING=1
@@ -11,7 +10,6 @@ services:
       - ./shared:/shared
 
   spark:
-    #image: docker.io/bitnami/spark:3.3
     build: images/spark
     environment:
       - SPARK_MODE=master
@@ -27,7 +25,6 @@ services:
       - ./jars_dir:/opt/bitnami/spark/ivy:z
 
   spark-worker:
-    #image: docker.io/bitnami/spark:3.3
     build: images/spark
     environment:
       - SPARK_MODE=worker
@@ -65,20 +62,7 @@ services:
 
   jupyter_notebook:
     image: 'jupyter/all-spark-notebook'
-    ports: 
+    ports:
       - '8888:8888'
     volumes:
       - ./shared/:/shared/
-  
-  # output_kafka:
-  #   image: 'bitnami/kafka:3.3.1'
-  #   ports:
-  #     - '9093:9092'
-  #   environment:
-  #     - KAFKA_BROKER_ID=2
-  #     - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-  #     - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
-  #     - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-  #     - ALLOW_PLAINTEXT_LISTENER=yes
-  #   depends_on:
-  #     - zookeeper
