@@ -161,6 +161,7 @@ cython_debug/
 
 mlpsuite_infrastructure/docker-compose/shared/checkpoint/
 mlpsuite_infrastructure/docker-compose/shared/train_raw.csv
+mlpsuite_infrastructure/docker-compose/shared/jars_dir
+mlpsuite_infrastructure/docker-compose/shared/models
 mlpsuite_engine/dependencies
-mlpsuite_infrastructure/docker-compose/jars_dir
 **/cache/**

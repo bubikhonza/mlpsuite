@@ -22,7 +22,7 @@ services:
       - '7070:7070'
     volumes:
       - ./shared:/shared
-      - ./jars_dir:/opt/bitnami/spark/ivy:z
+      - ./shared/jars_dir:/opt/bitnami/spark/ivy:z
 
   spark-worker:
     build: images/spark
