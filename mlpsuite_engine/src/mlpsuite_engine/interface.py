@@ -9,7 +9,8 @@ import pyspark.sql.functions as F
 from datetime import datetime
 import yaml
 import logging
-import os, glob
+import os
+import glob
 import random
 import string
 
@@ -23,9 +24,12 @@ class Interface:
         self.__train_conf = dict(ChainMap(*self.__config["train"]))
         self.__predict_conf = dict(ChainMap(*self.__config["predict"]))
         self.__train_data_schema = dict(ChainMap(*self.__train_conf["schema"]))
-        self.__predict_data_schema = dict(ChainMap(*self.__predict_conf["schema"]))
-        self.__input_kafka_settings = dict(ChainMap(*self.__predict_conf["input_kafka_options"]))
-        self.__output_kafka_settings = dict(ChainMap(*self.__predict_conf["output_kafka_options"]))
+        self.__predict_data_schema = dict(
+            ChainMap(*self.__predict_conf["schema"]))
+        self.__input_kafka_settings = dict(
+            ChainMap(*self.__predict_conf["input_kafka_options"]))
+        self.__output_kafka_settings = dict(
+            ChainMap(*self.__predict_conf["output_kafka_options"]))
 
     def __create_pipeline(self) -> Pipeline:
         pyspark_stages = []
@@ -76,6 +80,18 @@ class Interface:
             query.option(k, v)
         return query.start()
 
+    def __load_pipeline(self, version: str) -> PipelineModel:
+        if version:
+            model_path = os.path.join(
+                self.__predict_conf["pipeline_path"], version)
+        else:
+            root_dir = self.__predict_conf["pipeline_path"]
+            latestdir = max([os.path.join(root_dir, d)
+                            for d in os.listdir(root_dir)], key=os.path.getmtime)
+            model_path = os.path.join(
+                self.__predict_conf["pipeline_path"], latestdir)
+        return PipelineModel.load(model_path)
+
     def run_train(self) -> None:
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
 
@@ -92,14 +108,8 @@ class Interface:
         logger.error("My test info statement")
         spark = SparkSession.builder.appName("Pipeliner").getOrCreate()
         version = str(self.__predict_conf.get("version", ""))
-        if version:
-            model_path = os.path.join(self.__predict_conf["pipeline_path"], version)
-        else:
-            root_dir = self.__predict_conf["pipeline_path"]
-            latestdir = max([os.path.join(root_dir, d) for d in os.listdir(root_dir)], key=os.path.getmtime)
-            model_path = os.path.join(self.__predict_conf["pipeline_path"], latestdir)
+        pipeline = self.__load_pipeline(version)
 
-        pipeline = PipelineModel.load(model_path)
         input_stream_df = self.__build_kafka_input(spark)
 
         schema = self.__create_pyspark_predict_schema()
@@ -109,8 +119,10 @@ class Interface:
         )
         df = df.select("sample.*")
         result = pipeline.transform(df)
-        result = result.select([F.col(c).cast("string") for c in result.columns])
-        result = result.withColumn("value", F.to_json(F.struct("*")).cast("string"), )
+        result = result.select([F.col(c).cast("string")
+                               for c in result.columns])
+        result = result.withColumn(
+            "value", F.to_json(F.struct("*")).cast("string"), )
         query = self.__build_kafka_output(spark, result)
 
         query.awaitTermination()

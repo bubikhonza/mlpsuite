@@ -4,6 +4,8 @@
 :start
 cls
 
+cd ..
+
 @RD /S /Q dependencies
 py -m pip install -t dependencies -r requirements.txt
 py -m pip install -t dependencies .
