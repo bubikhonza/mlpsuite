@@ -24,4 +24,4 @@ After executing this job, every input you send to input
 kafka will be transformed by the pipeline model and sent to output kafka.
 Kafka's and pipeline model are specified in engine configuration.
 ### Exploring and editing data
-If you need to explore or edit the training data, you can use jupyter container for this purpose - /shared* contains directory shared between every container. You can then reference it in mlpsuite_engine_config.yaml
+If you need to explore or edit the training data, you can use jupyter container for this purpose - /shared* contains directory shared between every container.
