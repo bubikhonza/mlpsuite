@@ -19,27 +19,16 @@ stages:
       - regParam=0.001[float]
 
 train:
-  - path: /sharedtrain_test.csv
+  - path: /shared/train_test.csv
   - header: true
   - schema:
     - id: IntegerType
     - text: StringType
     - label: DoubleType
-    # - ip_src: StringType
-    # - ip_dst: StringType
-    # - ip_len: DoubleType
-    # - eth_src: StringType
-    # - eth_dst: StringType
-    # - tcp_src_port: IntegerType
-    # - tcp_dst_port: IntegerType
-    # - frame_time_epoch: StringType
-    # - frame_len: DoubleType
-    # - frame_protocols: StringType
-    # - frame_time: TimestampType
-  - pipeline_output: /sharedmodels/
+  - pipeline_output: /shared/models/
 
 predict:
-  - pipeline_path: /sharedmodels/
+  - pipeline_path: /shared/models/
   - version: 202301251941_RTE
   - schema:
     - id: IntegerType
@@ -52,5 +41,5 @@ predict:
 
   - output_kafka_options:
       - kafka.bootstrap.servers: "kafka:9092"
-      - checkpointLocation: "/sharedcheckpoint"
+      - checkpointLocation: "/shared/checkpoint"
       - topic: "output"

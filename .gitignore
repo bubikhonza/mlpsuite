@@ -159,9 +159,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 
-mlpsuite_infrastructure/docker/shared/dependencies.zip
-mlpsuite_infrastructure/docker-compose/sharedcheckpoint/
-mlpsuite_infrastructure/sharedtrain_raw.csv
+mlpsuite_infrastructure/docker-compose/shared/checkpoint/
+mlpsuite_infrastructure/docker-compose/shared/train_raw.csv
+mlpsuite_infrastructure/docker-compose/shared/jars_dir
+mlpsuite_infrastructure/docker-compose/shared/models
 mlpsuite_engine/dependencies
-mlpsuite_infrastructure/jars_dir
 **/cache/**

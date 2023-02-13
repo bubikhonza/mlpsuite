@@ -2,4 +2,4 @@
 Container orchestration with spark and kafka.
 
 - [docker-compose](docker-compose)
-- [k8s](k8s)
+- [kubernetes]() # In development
