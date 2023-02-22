@@ -1,6 +1,6 @@
 ## MLPSuite Engine
 
-Core part of MLPSuite. Provides easy interface to build Pyspark ML pipelines from yaml file.
+Provides easy interface to build Pyspark ML pipelines from yaml file.
 
 ## Submitting to Spark
 *NOTE: You can use - [MLPSuite Infrastructure](../mlpsuite_infrastructure) if you dont want to setup own infrastructure*
