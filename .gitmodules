@@ -4,3 +4,6 @@
 [submodule "mlpsuite_infrastructure"]
 	path = mlpsuite_infrastructure
 	url = git@github.com:bubikhonza/mlpsuite_infrastructure.git
+[submodule "mlpsuite_deployer"]
+	path = mlpsuite_deployer
+	url = git@github.com:bubikhonza/mlpsuite_deployer.git
